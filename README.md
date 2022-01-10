@@ -23,3 +23,6 @@ How many shares they own
 How many shares they plan on buying
 Do they plan on selling on the given date
 Should be visually appealing and easy to use/understand
+
+
+https://docs.google.com/document/d/1vE9C6uVZ2hW7E4VhkTOp-Jxo2dNxoJoecV21edQcIQg/edit
