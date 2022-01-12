@@ -5,16 +5,62 @@ import pandas as pd
 import csv
 import math
 import datetime
+import pygame
+import sys
 
-#start - 16330 (2014-09-17)
-#end - 18873 (2021-09-03)
+# start - 16330 (2014-09-17)
+# end - 18873 (2021-09-03)
+
+def pyg(text1):
+    text1 = str(text1).split(" ")
+    pygame.init()
+    pygame.display.set_caption('mpltest')
+    display_screen = pygame.display.set_mode((800, 800))
+    display_screen.fill((0, 0, 0))
+    pygame.display.flip()
+    base_font = pygame.font.Font("freesansbold.ttf", 18)
+    text = base_font.render("Date: " + text1[0], True, (255, 255, 255), (0, 0, 0))
+    textRect = text.get_rect()
+    textRect.center = (80, 10)
+    display_screen.blit(text, textRect)
+    text = base_font.render("Opening: " + text1[1], True, (255, 255, 255), (0, 0, 0))
+    textRect = text.get_rect()
+    textRect.center = (80, 40)
+    display_screen.blit(text, textRect)
+    text = base_font.render("Highest: " + text1[2], True, (255, 255, 255), (0, 0, 0))
+    textRect = text.get_rect()
+    textRect.center = (80, 70)
+    display_screen.blit(text, textRect)
+    text = base_font.render("Lowest: " + text1[3], True, (255, 255, 255), (0, 0, 0))
+    textRect = text.get_rect()
+    textRect.center = (80, 100)
+    display_screen.blit(text, textRect)
+    text = base_font.render("Closing: " + text1[4], True, (255, 255, 255), (0, 0, 0))
+    textRect = text.get_rect()
+    textRect.center = (80, 130)
+    display_screen.blit(text, textRect)
+    text = base_font.render("Volume: " + text1[6], True, (255, 255, 255), (0, 0, 0))
+    textRect = text.get_rect()
+    textRect.center = (80, 160)
+    display_screen.blit(text, textRect)
+    pygame.display.update()
+
+
+
+def find(date):
+    with open("Dogecoin.csv", mode="r") as f:
+        for i in csv.reader(f):
+            if str(i[0]) == str(date):
+                return " ".join(list(i))
+
 
 def mouse_event(event):
     if event.inaxes is not None:
         start = "9/17/14"
         date_1 = datetime.datetime.strptime(start, "%m/%d/%y")
         end = date_1 + datetime.timedelta(days=math.trunc(event.xdata)-16330)
-        print('{}'.format(end.date()))
+        pyg(find(end.date()))
+
 
 ds = [[], []]
 times = pd.date_range('2014-09-17', periods=len(pd.read_csv("Dogecoin.csv")) + 1, freq='D')
