@@ -6,45 +6,47 @@ import csv
 import math
 import datetime
 import pygame
-import sys
+
 
 # start - 16330 (2014-09-17)
 # end - 18873 (2021-09-03)
 
+
 def pyg(text1):
+    if text1 is None or len(text1) <= 1:
+        return
     text1 = str(text1).split(" ")
     pygame.init()
     pygame.display.set_caption('mpltest')
-    display_screen = pygame.display.set_mode((800, 800))
+    display_screen = pygame.display.set_mode((300, 300))
     display_screen.fill((0, 0, 0))
     pygame.display.flip()
     base_font = pygame.font.Font("freesansbold.ttf", 18)
     text = base_font.render("Date: " + text1[0], True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
-    textRect.center = (80, 10)
+    textRect.center = (150, 80)
     display_screen.blit(text, textRect)
     text = base_font.render("Opening: " + text1[1], True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
-    textRect.center = (80, 40)
+    textRect.center = (150, 110)
     display_screen.blit(text, textRect)
     text = base_font.render("Highest: " + text1[2], True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
-    textRect.center = (80, 70)
+    textRect.center = (150, 140)
     display_screen.blit(text, textRect)
     text = base_font.render("Lowest: " + text1[3], True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
-    textRect.center = (80, 100)
+    textRect.center = (150, 170)
     display_screen.blit(text, textRect)
     text = base_font.render("Closing: " + text1[4], True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
-    textRect.center = (80, 130)
+    textRect.center = (150, 200)
     display_screen.blit(text, textRect)
     text = base_font.render("Volume: " + text1[6], True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
-    textRect.center = (80, 160)
+    textRect.center = (150, 230)
     display_screen.blit(text, textRect)
     pygame.display.update()
-
 
 
 def find(date):
@@ -58,7 +60,7 @@ def mouse_event(event):
     if event.inaxes is not None:
         start = "9/17/14"
         date_1 = datetime.datetime.strptime(start, "%m/%d/%y")
-        end = date_1 + datetime.timedelta(days=math.trunc(event.xdata)-16330)
+        end = date_1 + datetime.timedelta(days=math.trunc(event.xdata) - 16330)
         pyg(find(end.date()))
 
 
