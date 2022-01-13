@@ -22,7 +22,7 @@ def pyg(text1):
     display_screen.fill((0, 0, 0))
     pygame.display.flip()
     base_font = pygame.font.Font("freesansbold.ttf", 18)
-    text = base_font.render("Date: " + text1[0], True, (255, 255, 255), (0, 0, 0))
+    text = base_font.render("Date: " + datetime.datetime.strptime(text1[0], "%Y-%m-%d").strftime("%B-%d-%Y"), True, (255, 255, 255), (0, 0, 0))
     textRect = text.get_rect()
     textRect.center = (150, 80)
     display_screen.blit(text, textRect)
