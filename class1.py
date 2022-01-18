@@ -4,7 +4,7 @@
 #Fix the lack of the pyg window working: critical
 #Unable to be fixed currently, time restraints
 
-  from tkinter import *
+from tkinter import *
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
 import matplotlib.dates as mdates
@@ -23,7 +23,6 @@ ds = [[], []]
 
 
 def pyg(text1):
-  print("hi")
   if text1 is None or len(text1) <= 1:
     return
   text1 = str(text1).split(" ")
