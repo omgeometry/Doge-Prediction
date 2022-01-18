@@ -6,6 +6,14 @@ import csv
 import math
 import datetime
 import pygame
+import requests
+from autots import AutoTS
+
+inputModel = AutoTS(forecast_length=10, frequency='infer', ensemble='simple', drop_data_older_than_periods=200)
+inputModel = inputModel.fit(pd.read_csv("Dogecoin.csv", date_col='Date', value_col='Close',id_col=None))
+
+predictedModel = inputModel.predict()
+
 
 
 # start - 16330 (2014-09-17)
@@ -67,7 +75,7 @@ def mouse_event(event):
 ds = [[], []]
 times = pd.date_range('2014-09-17', periods=len(pd.read_csv("Dogecoin.csv")) + 1, freq='D')
 
-with open("Dogecoin.csv", mode="r") as f:
+with open(predictedModel, mode="r") as f:
     count = 0
     for i in csv.reader(f):
         if count != 0 and i[1] != 'null':
